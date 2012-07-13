@@ -13,7 +13,11 @@ describe CompoundSplitter::Splitter do
     end
 
     it "should return pen island for penisland" do
-      subject.viterbi_split('penisland').should == %w[pen island]
+      subject.viterbi_split('penisland').should == %w[penis land]
+    end
+
+    it "should do something with ''" do
+      subject.viterbi_split('').should == []
     end
   end
 end

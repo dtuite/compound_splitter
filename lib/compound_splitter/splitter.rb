@@ -7,36 +7,35 @@ module CompoundSplitter
     end
 
     def viterbi_split(compound)
+      return [] if compound.empty?
+
       probs, lasts = [1.0], [0]
 
       1.upto(compound.length) do |i|
 
         biggest = [0, i - dictionary.max_word_length].max
-        iter_array = (biggest..(i - 1)).to_a
 
         all_probs = []
-        iter_array.each do |j|
+        biggest.upto(i - 1).each do |j|
           part_of_compound = compound[j..(i-1)]
           probability_part_is_word = dictionary.word_prob(part_of_compound)
           something = [(probs[j] || 0.0) * probability_part_is_word, j]
           all_probs << something
         end
 
-        max_all_probs = all_probs.max
-        probs << max_all_probs[0]
-        lasts << max_all_probs[1]
+        probs << all_probs.max[0]
+        lasts << all_probs.max[1]
       end
 
       words = []
       i = compound.length
       while 0 < i
-        word_to_append = compound[lasts[i]..(i-1)]
-        words << word_to_append
+        words << compound[lasts[i]..(i-1)]
         i = lasts[i]
       end
 
-      [words.reverse, probs[-1]]
-      # words.reverse
+      # [words.reverse, probs[-1]]
+      words.reverse
     end
 
   end
