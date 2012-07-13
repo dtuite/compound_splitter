@@ -1,5 +1,8 @@
 require "compound_splitter/version"
+require "compound_splitter/splitter"
 
 module CompoundSplitter
-  # Your code goes here...
+  def self.split(compound)
+    Splitter.viterbi_split(compound)
+  end
 end

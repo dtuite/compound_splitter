@@ -1,6 +1,7 @@
 # CompoundSplitter
 
-TODO: Write a gem description
+Split compoind words into their component parts. For example, 'rainyday' ->
+'rainy day'.
 
 ## Installation
 
@@ -18,7 +19,8 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+splitter = CompoundSplitter.new
+splitter.split('rainyray')
 
 ## Contributing
 
