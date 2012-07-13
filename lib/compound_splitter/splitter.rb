@@ -6,7 +6,7 @@ module CompoundSplitter
       @dictionary = dictionary || Dictionary.new
     end
 
-    def viterbi_split(compound)
+    def split(compound)
       return [] if compound.empty?
 
       probs, lasts = [1.0], [0]
